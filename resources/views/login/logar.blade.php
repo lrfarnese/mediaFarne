@@ -18,12 +18,14 @@
         @include('login.componentesLogin.input',[
             'placeholder' => 'Email',
             'type' => 'email',
-            'name' =>'email'
+            'name' =>'email',
+            'icon'=> 'bi bi-envelope'
         ])
         @include('login.componentesLogin.input',[
             'placeholder' => 'Senha',
             'type' => 'password',
-            'name' =>'password'
+            'name' =>'password',
+            'icon'=>'bi bi-lock'
         ])
 
         <div class="row">

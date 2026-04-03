@@ -18,22 +18,26 @@
         @include('login.componentesLogin.input',[
             'placeholder' => 'Nome Completo',
             'type' => 'text',
-            'name' =>'name'
+            'name' =>'name',
+            'icon'=>'bi bi-person'
         ])
         @include('login.componentesLogin.input',[
             'placeholder' => 'Email',
             'type' => 'email',
-            'name' =>'email'
+            'name' =>'email',
+            'icon'=> 'bi bi-envelope'
         ])
         @include('login.componentesLogin.input',[
             'placeholder' => 'Senha',
             'type' => 'password',
-            'name' =>'password'
+            'name' =>'password',
+            'icon'=>'bi bi-lock'
         ])
         @include('login.componentesLogin.input',[
             'placeholder' => 'Confirmar senha',
             'type' => 'password',
-            'name' =>'password_confirmation'
+            'name' =>'password_confirmation',
+            'icon'=>'bi bi-lock'
         ])
 
         <div class="row">
