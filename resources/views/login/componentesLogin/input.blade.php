@@ -9,13 +9,13 @@
     </div>
     <input 
     type="{{ $type ?? '' }}" 
-    class="form-control @error('{{ $name }}') is-invalid @enderror"
+    class="form-control @error( $name ) is-invalid @enderror"
     name="{{ $name  ?? '' }}" 
     placeholder="{{ $placeholder ?? '' }}"
-    value="{{ old('$name') }}"
+    value="{{ old($name) }}"
     >
     
-    @error("$name")
-    <div class="alert alert-danger">{{ $message }}</div>
+    @error($name)
+        <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
