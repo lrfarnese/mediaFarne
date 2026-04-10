@@ -1,20 +1,19 @@
 @extends('layouts.register')
 @section('title', 'MediaFarne-Login')
-@section('classe-body','register-page')
+@section('classe-body','login-page')
 
 @section('form')
 
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Media</b>Farne</a>
+      <a href="" class="h1"><b>Media</b>Farne</a>
     </div>
     <div class="card-body">
       
 
       <form action="{{ route('login') }}" method="post">
         @csrf
-
         @include('login.componentesLogin.input',[
             'placeholder' => 'Email',
             'type' => 'email',
