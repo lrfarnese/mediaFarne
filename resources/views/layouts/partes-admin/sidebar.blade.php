@@ -20,19 +20,19 @@
             >
              
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('adminDashboard') }}" class="nav-link">
                   <i class="nav-icon bi bi-bar-chart-line-fill"></i>
                   <p>Home Dashboard</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('adminUser') }}" class="nav-link">
                   <i class="nav-icon bi bi-person"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('adminPost') }}" class="nav-link">
                   <i class="nav-icon bi bi-postage"></i>
                   <p>Posts</p>
                 </a>
