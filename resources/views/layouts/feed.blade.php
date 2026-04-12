@@ -7,9 +7,14 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-
-    @yield('content')
+    @include('layouts.partes-feed.nav-bar')
+    <main>
+        @yield('content')
+    </main>
+    @include('layouts.partes-feed.nav-bottom')
         
+    @include('layouts.partes-feed.modal')
+    
     @vite('resources/js/app.js')
 </body>
 </html>
