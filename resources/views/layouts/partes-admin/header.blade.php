@@ -59,26 +59,12 @@
             </li>
             <!--end::User Image-->
             <!--begin::Menu Body-->
-            <li class="user-body">
-                <!--begin::Row-->
-                <div class="row">
-                <div class="col-4 text-center">
-                    <a href="#">Followers</a>
-                </div>
-                <div class="col-4 text-center">
-                    <a href="#">Sales</a>
-                </div>
-                <div class="col-4 text-center">
-                    <a href="#">Friends</a>
-                </div>
-                </div>
-                <!--end::Row-->
-            </li>
+            
             <!--end::Menu Body-->
             <!--begin::Menu Footer-->
             <li class="user-footer">
-                <a href="#" class="btn btn-outline-secondary">Profile</a>
-                <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
+                <a href="#" class="btn btn-outline-secondary">Editar Perfil</a>
+                <a href="{{ route('logout') }}" class="btn btn-outline-danger float-end">Sair</a>
             </li>
             <!--end::Menu Footer-->
             </ul>

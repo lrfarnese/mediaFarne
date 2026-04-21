@@ -2,23 +2,23 @@
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
         <!-- Esquerda -->
-        <button type="button"
+        {{-- <button type="button"
                 class="btn btn-light rounded-circle"
                 data-bs-toggle="modal"
                 data-bs-target="#createPostModal">
             <span class="bi bi-plus"></span>
-        </button>
+        </button> --}}
 
         <!-- Centro -->
-        <a class="mx-auto text-decoration-none" href="#">
+        <div class="mx-auto text-decoration-none">
             <span class="fw-bold text-white" 
                 style="font-size: 24px; letter-spacing: 1px; text-shadow: 0 2px 6px rgba(0,0,0,0.3);">
                 <span class="bi bi-image"></span>
                 FarneMedia
                 <span class="bi bi-pen-fill"></span>
             </span>
-        </a>
-
+        
+        </div>
         <!-- Direita -->
         <div class="dropdown">
             <button class="btn btn-light rounded-circle"
@@ -28,7 +28,12 @@
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Meu perfil</a></li>
+                @if (request()->routeIs('feed'))
+                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a></li>
+                @elseif (request()->routeIs('perfil'))
+                    <li><a class="dropdown-item" href="{{ route('feed') }}">Feed Principal</a></li>
+                @endif
+            
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">

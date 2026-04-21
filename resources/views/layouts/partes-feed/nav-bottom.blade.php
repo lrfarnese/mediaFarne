@@ -4,7 +4,14 @@
 
         <!-- Home -->
         <a href="{{ route('feed') }}" class="nav-item text-dark text-decoration-none">
-            <i class="bi bi-house fs-4"></i>
+            
+            @if (request()->routeIs('perfil'))
+                <i class="bi bi-house fs-4"></i>
+            @else 
+                <i class="bi bi-house-fill fs-4"></i>
+            @endif
+            
+    
         </a>
 
         <!-- Criar -->
@@ -16,8 +23,14 @@
         </div>
         
         <!-- Perfil -->
-        <a href="#" class="nav-item text-dark text-decoration-none">
-            <i class="bi bi-person fs-4"></i>
+        <a href="{{ route('perfil') }}" class="nav-item text-dark text-decoration-none">
+            
+            @if (request()->routeIs('perfil'))
+                <i class="bi bi-person-fill fs-4 "></i>
+            @else
+                <i class="bi bi-person fs-4"></i>
+            @endif
+            
         </a>
 
     </div>

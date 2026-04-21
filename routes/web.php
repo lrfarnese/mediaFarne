@@ -6,20 +6,20 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Feed\FeedController;
-
+use App\Http\Controllers\Perfil\PerfilController;
 
 Route::get('/', function () {
     return redirect()->route('feed');
 })->middleware('auth');
 
 
-Route::middleware(['auth'])->group(function(){
+//Route::middleware(['auth'])->group(function(){
 
     Route::get('/feed',[FeedController::class, 'index'])->name('feed');
-
+    Route::get('/perfil',[PerfilController::class, 'index'])->name('perfil');
     
     
-});
+//});
 
     
     Route::get('admin/users',[AdminUserController::class,'index'])->name('adminUser');

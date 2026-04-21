@@ -3,10 +3,26 @@
 @section('content')
 <div class="container py-4">
     <div class="row justify-content-center">
-        {{-- 
-            col-lg-5 e col-md-8 garantem que no desktop o feed 
-            tenha uma largura elegante, parecida com o Instagram.
-        --}}
+        
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="d-flex justify-content-center bg-white p-2 border shadow-sm" style="border-radius: 50px;">
+                    <ul class="nav nav-pills nav-fill w-100" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill fw-bold py-1" style="font-size: 13px;" id="pills-following-tab" data-bs-toggle="pill" type="button">
+                                Explorar
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill fw-bold py-1" style="font-size: 13px;" id="pills-global-tab" data-bs-toggle="pill" type="button">
+                                Seguindo
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="col-12 col-md-8 col-lg-5">
             
             @forelse($posts as $post)
