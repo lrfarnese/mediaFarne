@@ -3,7 +3,7 @@
     'likes', 
     'deslikes' => 0, 
     'legenda', 
-    'imageColor', 
+    'imageColor' ?? 'transparent', 
     'imageUrl' => null,
     'date'
 ])

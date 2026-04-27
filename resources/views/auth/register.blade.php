@@ -15,25 +15,25 @@
       <form action="{{ route('register') }}" method="post">
         @csrf
 
-        @include('login.componentesLogin.input',[
+        @include('components.componentes-login.input',[
             'placeholder' => 'Nome Completo',
             'type' => 'text',
             'name' =>'name',
             'icon'=>'bi bi-person'
         ])
-        @include('login.componentesLogin.input',[
+        @include('components.componentes-login.input',[
             'placeholder' => 'Email',
             'type' => 'email',
             'name' =>'email',
             'icon'=> 'bi bi-envelope'
         ])
-        @include('login.componentesLogin.input',[
+        @include('components.componentes-login.input',[
             'placeholder' => 'Senha',
             'type' => 'password',
             'name' =>'password',
             'icon'=>'bi bi-lock'
         ])
-        @include('login.componentesLogin.input',[
+        @include('components.componentes-login.input',[
             'placeholder' => 'Confirmar senha',
             'type' => 'password',
             'name' =>'password_confirmation',

@@ -14,13 +14,13 @@
 
       <form action="{{ route('login') }}" method="post">
         @csrf
-        @include('login.componentesLogin.input',[
+        @include('components.componentes-login.input',[
             'placeholder' => 'Email',
             'type' => 'email',
             'name' =>'email',
             'icon'=> 'bi bi-envelope'
         ])
-        @include('login.componentesLogin.input',[
+        @include('components.componentes-login.input',[
             'placeholder' => 'Senha',
             'type' => 'password',
             'name' =>'password',

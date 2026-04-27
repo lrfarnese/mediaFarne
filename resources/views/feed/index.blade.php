@@ -1,4 +1,4 @@
-@extends('layouts.feed')
+@extends('layouts.main')
 
 @section('content')
 <div class="container py-4">

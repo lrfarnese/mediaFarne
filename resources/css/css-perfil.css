@@ -1,0 +1,55 @@
+.grid-posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+@media (max-width: 576px) {
+    .grid-posts {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3px;
+    }
+}
+
+.grid-post-thumb {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.grid-post-thumb .thumb-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.grid-post-thumb:hover .thumb-bg {
+    transform: scale(1.09);
+}
+
+/* Modal */
+.modal-post .modal-dialog {
+    max-width: 400px;
+}
+
+.modal-post .modal-content {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal-post .modal-body {
+    padding: 0;
+}
+
+/* Remove margin-bottom do card dentro do modal */
+.modal-post .card {
+    margin-bottom: 0 !important;
+}
+.grid-post-thumb:active .thumb-bg {
+    transform: scale(0.97);
+}

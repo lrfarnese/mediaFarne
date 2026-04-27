@@ -32,6 +32,7 @@
                     <li><a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a></li>
                 @elseif (request()->routeIs('perfil'))
                     <li><a class="dropdown-item" href="{{ route('feed') }}">Feed Principal</a></li>
+                    <li><a class="dropdown-item" href="">Editar Perfil</a></li>
                 @endif
             
                 <li><hr class="dropdown-divider"></li>
