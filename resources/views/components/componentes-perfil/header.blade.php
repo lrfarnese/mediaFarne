@@ -18,14 +18,20 @@
 
             <div class="vr"></div>
             <div class="text-center">
-                <div class="fw-bold">1,2K</div>
-                <div class="text-muted small">Seguidores</div>
+                <a href="{{ route('perfil.seguidores') }}" class="text-decoration-none text-dark">
+                    <div class="fw-bold">1,2K</div>
+                    <div class="text-muted small">Seguidores</div>
+                </a>
+                
             </div>
             
             <div class="vr"></div>
             <div class="text-center">
-                <div class="fw-bold">180</div>
-                <div class="text-muted small">Seguindo</div>
+                <a href="{{ route('perfil.seguindo')}}" class="text-decoration-none text-dark">
+                    <div class="fw-bold">180</div>
+                    <div class="text-muted small">Seguindo</div>
+                </a>
+                
             </div>
         </div>
     </div>

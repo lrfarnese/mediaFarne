@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@push('styles')
+    @vite('resources/css/css-perfil.css')  
+@endpush
+
 @section('content')
 
     <div class="container py-4" style="max-width: 820px;">

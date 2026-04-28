@@ -13,5 +13,14 @@ class PerfilController extends Controller
         
         return view('perfil.index');
     }
+    public function seguidores()
+    {
+        return view('perfil.follows');
+    }
+
+    public function seguindo()
+    {
+        return view('perfil.follows');
+    }
 
 }

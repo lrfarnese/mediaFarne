@@ -17,7 +17,10 @@ Route::get('/', function () {
 
     Route::get('/feed',[FeedController::class, 'index'])->name('feed');
     Route::get('/perfil',[PerfilController::class, 'index'])->name('perfil');
-    
+    Route::get('/perfil/seguidores', [PerfilController::class, 'seguidores'])
+    ->name('perfil.seguidores');
+    Route::get('/perfil/seguindo',   [PerfilController::class, 'seguindo'])
+    ->name('perfil.seguindo');
     
 //});
 
