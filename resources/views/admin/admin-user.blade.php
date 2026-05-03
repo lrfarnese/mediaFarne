@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content-main')
+@section('content')
     <h2 class="mb-2">Administrativo Usuários</h2>
 
     <div class="input-group mb-3 mt-1">
@@ -55,5 +55,10 @@
                 </tr>
             @endforeach
         </tbody>
+        <a href=""
+            class="btn btn-primary rounded-circle shadow position-fixed d-flex align-items-center justify-content-center"
+            style="width: 56px; height: 56px; bottom: 32px; right: 32px; z-index: 999; font-size: 24px;">
+            <i class="bi bi-plus"></i>
+        </a>
     </table>
 @endsection

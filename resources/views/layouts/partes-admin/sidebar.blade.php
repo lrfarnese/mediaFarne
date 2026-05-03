@@ -23,7 +23,7 @@
                     <a href="{{ route('adminDashboard') }}" 
                        class="nav-link {{ request()->routeIs('adminDashboard') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-bar-chart-line-fill"></i>
-                        <p>Home Dashboard</p>
+                        <p>Estatísticas Aplicação</p>
                     </a>
                 </li>
 
@@ -32,7 +32,7 @@
                     <a href="{{ route('adminUser') }}" 
                        class="nav-link {{ request()->routeIs('adminUser*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-person"></i>
-                        <p>Users</p>
+                        <p>Usuários</p>
                     </a>
                 </li>
 
@@ -41,7 +41,7 @@
                     <a href="{{ route('adminPost') }}" 
                        class="nav-link {{ request()->routeIs('adminPost*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-postage"></i>
-                        <p>Posts</p>
+                        <p>Postagens</p>
                     </a>
                 </li>
 

@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 //Route::middleware(['auth'])->group(function(){
 
-    Route::get('/feed',[FeedController::class, 'index'])->name('feed');
+    Route::get('/',[FeedController::class, 'index'])->name('feed');
     Route::get('/perfil',[PerfilController::class, 'index'])->name('perfil');
     Route::get('/perfil/seguidores', [PerfilController::class, 'seguidores'])
     ->name('perfil.seguidores');
@@ -25,8 +25,8 @@ Route::get('/', function () {
 //});
 
     
-    Route::get('admin/users',[AdminUserController::class,'index'])->name('adminUser');
-    Route::get('admin/post',[AdminPostController::class,'index'])->name('adminPost');
-    Route::get('admin/dashboard',[AdminDashboardController::class,'index'])->name('adminDashboard');
+    Route::get('/admin/users',[AdminUserController::class,'index'])->name('adminUser');
+    Route::get('/admin/post',[AdminPostController::class,'index'])->name('adminPost');
+    Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
     
 

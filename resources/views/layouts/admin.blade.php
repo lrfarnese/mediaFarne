@@ -1,32 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed Media Farne</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="">
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
 
     <div class="app-wrapper">
-        <!--Como se fosse um app Bar Flutter -->
         @include('layouts.partes-admin.header')
-        <!--Onde fica o menu do lado esquerdo para acessar diferentes Pags -->
         @include('layouts.partes-admin.sidebar')
-        <!-- Informações dinâmicas(area principal) -->
-        <div class="app-main">
-            <div class="app-content-header">
-                
-            </div>
-            <div class="app-content">
-                @yield('content-main')
-            </div>
-            
-        </div>
         
+        <main class="app-main">
+            <div class="app-content">
+                <div class="container-fluid py-3">
+                    @yield('content')
+                </div>
+            </div>
+        </main>
+        <footer class="app-footer">
+            <strong>Media Farnese</strong>
+        </footer>
     </div>
 
-
-    @vite('resources/js/app.js')
 </body>
 </html>

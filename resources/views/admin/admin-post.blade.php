@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content-main')
+@section('content')
     <h2 class="mb-2">Administrativo Posts</h2>
 
     <div class="input-group mb-3 mt-1">
