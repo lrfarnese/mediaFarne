@@ -1,4 +1,4 @@
-@vite('resources/css/css-feed/css-nav-bottom.css')
+
 <nav class="bottom-nav fixed-bottom bg-white border-top shadow-sm">
     <div class="d-flex justify-content-around align-items-center h-100">
 
