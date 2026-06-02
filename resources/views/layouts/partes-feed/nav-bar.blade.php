@@ -14,7 +14,7 @@
             <span class="fw-bold text-white" 
                 style="font-size: 24px; letter-spacing: 1px; text-shadow: 0 2px 6px rgba(0,0,0,0.3);">
                 <span class="bi bi-image"></span>
-                FarneMedia
+                MediaFarne
                 <span class="bi bi-pen-fill"></span>
             </span>
         

@@ -22,6 +22,12 @@
             'icon'=>'bi bi-person'
         ])
         @include('components.componentes-login.input',[
+            'placeholder' => 'Data Nascimento',
+            'type' => 'date',
+            'name' =>'data_nascimento',
+            'icon'=> 'bi bi-calendar-date'
+        ])
+        @include('components.componentes-login.input',[
             'placeholder' => 'Email',
             'type' => 'email',
             'name' =>'email',

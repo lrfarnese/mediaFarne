@@ -1,13 +1,13 @@
 
 <nav class="bottom-nav fixed-bottom bg-white border-top shadow-sm">
-    <div class="d-flex justify-content-around align-items-center h-100">
+    <div class="d-flex justify-content-around align-items-center h-130">
 
         <!-- Home -->
         <a href="{{ route('feed') }}" class="nav-item text-dark text-decoration-none">
             
             @if (request()->routeIs('perfil'))
                 <i class="bi bi-house fs-4"></i>
-            @else 
+            @else
                 <i class="bi bi-house-fill fs-4"></i>
             @endif
             
