@@ -8,25 +8,23 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Feed\FeedController;
 use App\Http\Controllers\Perfil\PerfilController;
 
-Route::get('/', function () {
-    return redirect()->route('feed');
-})->middleware('auth');
 
 
-//Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function(){
 
     Route::get('/',[FeedController::class, 'index'])->name('feed');
     Route::get('/perfil',[PerfilController::class, 'index'])->name('perfil');
+
     Route::get('/perfil/seguidores', [PerfilController::class, 'seguidores'])
     ->name('perfil.seguidores');
     Route::get('/perfil/seguindo',   [PerfilController::class, 'seguindo'])
     ->name('perfil.seguindo');
-    
-//});
 
-    
-    Route::get('/admin/users',[AdminUserController::class,'index'])->name('adminUser');
-    Route::get('/admin/post',[AdminPostController::class,'index'])->name('adminPost');
-    Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
-    
+});
+
+
+Route::get('/admin/users',[AdminUserController::class,'index'])->name('adminUser');
+Route::get('/admin/post',[AdminPostController::class,'index'])->name('adminPost');
+Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
+
 

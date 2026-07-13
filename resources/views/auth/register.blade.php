@@ -10,7 +10,6 @@
       <a href="" class="h1"><b>Media</b>Farne</a>
     </div>
     <div class="card-body">
-      
 
       <form action="{{ route('register') }}" method="post">
         @csrf
@@ -26,6 +25,12 @@
             'type' => 'date',
             'name' =>'data_nascimento',
             'icon'=> 'bi bi-calendar-date'
+        ])
+        @include('components.componentes-login.input',[
+            'placeholder' => 'Nome de usuário(UserName)',
+            'type' => 'text',
+            'name' =>'username',
+            'icon'=> 'bi bi-person-square'
         ])
         @include('components.componentes-login.input',[
             'placeholder' => 'Email',
@@ -47,7 +52,7 @@
         ])
 
         <div class="row">
-            <button type="submit" class="btn btn-primary btn-block">Criar conta</button> 
+            <button type="submit" class="btn btn-primary btn-block">Criar conta</button>
         </div>
       </form>
 

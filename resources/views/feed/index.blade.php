@@ -41,11 +41,11 @@
                     </button>
                     
                     <button class="btn btn-outline-secondary btn-sm rounded-3 fw-semibold py-2 d-flex align-items-center justify-content-center gap-2 text-start px-3">
-                        <i class="bi bi-eye text-muted"></i> Já vistos
+                        <i class="bi bi bi-heart fs-5 me-2"></i> Posts Curtidos
                     </button>
                     
                     <button class="btn btn-outline-secondary btn-sm rounded-3 fw-semibold py-2 d-flex align-items-center justify-content-center gap-2 text-start px-3">
-                        <i class="bi bi-eye-slash text-muted"></i> Não vistos
+                        <i class="bi bi-heartbreak fs-5 me-2"></i> Posts Descurtidos
                     </button>
                 </div>
             </div>
@@ -95,12 +95,11 @@
                 <div class="mb-4">
                     <x-post-card 
                         :username="$post->user->name"
-                        :likes="$post->likes_count"
-                        :deslikes="$post->dislikes_count ?? 0"
-                        :legenda="$post->description"
-                        :imageColor="$post->hex_color ?? '#e9ecef'"
-                        :imageUrl="$post->image_url ?? null"
-                        :date="$post->create_at"
+                        :likes="0"
+                        :deslikes="0"
+                        :legenda="$post->content"
+                        :imageUrl="$post->images->first()->url ?? null"
+                        :date="$post->created_at"
                     />
                 </div>
             @empty

@@ -7,8 +7,8 @@
 
     {{-- Nome + stats --}}
     <div class="flex-grow-1">
-        <h5 class="fw-bold mb-0">Lucas Farnese</h5>
-        <span class="text-muted small">@Farnesinho</span>
+        <h5 class="fw-bold mb-0">{{ auth()->user()->name }}</h5>
+        <span class="text-muted small">{{'@'. auth()->user()->username }}</span>
 
         <div class="d-flex align-items-center gap-3 mt-3 flex-wrap">
             <div class="text-center">
@@ -22,16 +22,16 @@
                     <div class="fw-bold">1,2K</div>
                     <div class="text-muted small">Seguidores</div>
                 </a>
-                
+
             </div>
-            
+
             <div class="vr"></div>
             <div class="text-center">
                 <a href="{{ route('perfil.seguindo')}}" class="text-decoration-none text-dark">
                     <div class="fw-bold">180</div>
                     <div class="text-muted small">Seguindo</div>
                 </a>
-                
+
             </div>
         </div>
     </div>

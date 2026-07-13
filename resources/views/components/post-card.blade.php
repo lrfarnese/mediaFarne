@@ -3,7 +3,6 @@
     'likes', 
     'deslikes' => 0, 
     'legenda', 
-    'imageColor' ?? 'transparent', 
     'imageUrl' => null,
     'date'
 ])
@@ -14,7 +13,7 @@
         <span class="fw-bold" style="font-size: 14px;">{{ $username }}</span>
     </div>
 
-    <div style="aspect-ratio: 1/1; background-color: {{ $imageColor }};">
+    <div style="aspect-ratio: 1/1;">
         @if($imageUrl)
             <img src="{{ $imageUrl }}" class="w-100 h-100 object-fit-cover">
         @endif
