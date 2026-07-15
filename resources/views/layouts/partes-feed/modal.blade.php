@@ -6,21 +6,30 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Escolha uma foto</label>
-                        <input type="file" class="form-control" id="postImage">
-                    </div>
+                <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @include('components.componentes-login.input',[
+                        'placeholder' => 'Foto',
+                        'type' => 'file',
+                        'name' =>'postImage',
+                        'icon'=> 'bi bi-file'
+                    ])
                     <div class="mb-3">
                         <label class="form-label">Legenda</label>
-                        <textarea class="form-control" rows="3" placeholder="Escreva uma legenda..."></textarea>
+                        <textarea class="form-control @error( 'legenda' ) is-invalid @enderror"
+                                  name="legenda"
+                        >
+                        </textarea>
+                        @error('legenda')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
+                    <button type="submit" class="btn btn-primary px-4">Compartilhar</button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary px-4">Compartilhar</button>
-            </div>
+
         </div>
     </div>
 </div>
+
+

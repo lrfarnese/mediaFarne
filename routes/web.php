@@ -6,13 +6,19 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Feed\FeedController;
+use App\Http\Controllers\Feed\PostController;
 use App\Http\Controllers\Perfil\PerfilController;
 
 
 
 Route::middleware(['auth'])->group(function(){
 
+
+    //Rotas Tela Feed
     Route::get('/',[FeedController::class, 'index'])->name('feed');
+    Route::post('/postCreate',[PostController::class, 'store'])->name('posts.store');
+
+    //Rotas Perfil
     Route::get('/perfil',[PerfilController::class, 'index'])->name('perfil');
 
     Route::get('/perfil/seguidores', [PerfilController::class, 'seguidores'])
@@ -22,9 +28,11 @@ Route::middleware(['auth'])->group(function(){
 
 });
 
+Route::middleware(['auth', 'is_admin'])->group(function(){
+    Route::get('/admin/users',[AdminUserController::class,'index'])->name('adminUser');
+    Route::get('/admin/post',[AdminPostController::class,'index'])->name('adminPost');
+    Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
+});
 
-Route::get('/admin/users',[AdminUserController::class,'index'])->name('adminUser');
-Route::get('/admin/post',[AdminPostController::class,'index'])->name('adminPost');
-Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
 
 

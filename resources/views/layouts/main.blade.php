@@ -8,14 +8,31 @@
     @stack('styles')
 </head>
 <body>
-    @include('layouts.partes-feed.nav-bar')
-    <main>
-        @yield('content')
-    </main>
-    @include('layouts.partes-feed.nav-bottom')
-        
-    @include('layouts.partes-feed.modal')
-    
-    @vite('resources/js/app.js')
+@include('layouts.partes-feed.nav-bar')
+<main>
+    @yield('content')
+</main>
+@include('layouts.partes-feed.nav-bottom')
+
+@include('layouts.partes-feed.toast')
+@include('layouts.partes-feed.modal')
+
+@vite('resources/js/app.js')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        document.querySelectorAll('.toast').forEach(function (toastEl) {
+            new bootstrap.Toast(toastEl).show();
+        });
+
+        @if($errors->any())
+        var modalEl = document.getElementById('createPostModal');
+        if (modalEl) {
+            bootstrap.Modal.getOrCreateInstance(modalEl).show();
+        }
+        @endif
+    });
+</script>
 </body>
 </html>

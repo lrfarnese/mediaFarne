@@ -1,23 +1,24 @@
 @props([
-    'username', 
-    'likes', 
-    'deslikes' => 0, 
-    'legenda', 
+    'username',
+    'likes',
+    'deslikes' => 0,
+    'legenda',
     'imageUrl' => null,
     'date'
 ])
 
-<div class="card border-1 mb-4 shadow-sm" style="border-radius: 8px; overflow: hidden; background-color: #fff;">
+<div class="card border-1 mb-4 shadow-sm mx-auto" style="border-radius: 8px; overflow: hidden; background-color: #fff; max-width: 550px; width: 100%;">
+
     <div class="d-flex align-items-center p-3">
         <div class="rounded-circle bg-secondary-subtle me-2" style="width: 32px; height: 32px;"></div>
         <span class="fw-bold" style="font-size: 14px;">{{ $username }}</span>
     </div>
 
-    <div style="aspect-ratio: 1/1;">
-        @if($imageUrl)
-            <img src="{{ $imageUrl }}" class="w-100 h-100 object-fit-cover">
-        @endif
-    </div>
+    @if($imageUrl)
+        <div style="aspect-ratio: 1/1; overflow: hidden; background-color: #efefef;">
+            <img src="{{ $imageUrl }}" class="w-100 h-100" style="object-fit: cover; object-position: center;">
+        </div>
+    @endif
 
     <div class="p-3">
         <div class="d-flex align-items-center mb-2">
