@@ -116,6 +116,7 @@
                     <div class="mb-4">
                         <x-post-card
                             :username="$post->user->username"
+                            :id="encrypt($post->user->id) "
                             :likes="$post->likes->count()"
                             :deslikes="$post->dislikes->count()"
                             :legenda="$post->content"

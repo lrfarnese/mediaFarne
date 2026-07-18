@@ -1,5 +1,6 @@
 @props([
     'username',
+    'id' => null,
     'likes',
     'deslikes' => 0,
     'legenda',
@@ -11,7 +12,9 @@
 
     <div class="d-flex align-items-center p-3">
         <div class="rounded-circle bg-secondary-subtle me-2" style="width: 32px; height: 32px;"></div>
-        <span class="fw-bold" style="font-size: 14px;">{{ $username }}</span>
+        <a href="{{ route('perfil', $id) }}" class="text-decoration-none text-reset">
+            <span class="fw-bold" style="font-size: 14px;">{{ $username }}</span>
+        </a>
     </div>
 
     @if($imageUrl)

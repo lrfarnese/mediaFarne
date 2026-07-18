@@ -19,7 +19,6 @@ class PostController extends Controller
             'legenda'   => 'nullable|string|max:100',
         ]);
 
-
         DB::beginTransaction();
 
         try {
@@ -52,6 +51,33 @@ class PostController extends Controller
             return redirect()->back()->with('falha', 'Falha ao publicar o post!');
         }
     }
+
+    public function destroy($id)
+    {
+        try {
+            $post = Post::find(decrypt($id));
+
+            if (!$post) {
+                return redirect()->route('perfil', encrypt(auth()->id()))
+                    ->with('falha', 'Post não encontrado!');
+            }
+
+            // Verificação de autorização no backend (essencial!)
+            if (auth()->id() !== $post->user_id) {
+                abort(403, 'Ação não autorizada.');
+            }
+
+            $post->delete();
+
+            return redirect()->route('perfil', encrypt(auth()->id()))
+                ->with('sucesso', 'Post apagado com sucesso!');
+
+        } catch (\Throwable $e) {
+            return redirect()->route('perfil', encrypt(auth()->id()))
+                ->with('falha', 'Erro ao apagar o post!');
+        }
+    }
+
 
 
 }

@@ -40,7 +40,7 @@ class User extends Authenticatable
     }
 
     //sigo
-    public function following()
+    public function seguindo()
     {
         return $this->belongsToMany(
             User::class,
@@ -51,7 +51,7 @@ class User extends Authenticatable
     }
 
     // me segue
-    public function followers()
+    public function seguidores()
     {
         return $this->belongsToMany(
             User::class,

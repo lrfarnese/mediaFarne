@@ -7,19 +7,21 @@
 
     {{-- Nome + stats --}}
     <div class="flex-grow-1">
-        <h5 class="fw-bold mb-0">{{ auth()->user()->name }}</h5>
-        <span class="text-muted small">{{'@'. auth()->user()->username }}</span>
+
+            <h5 class="fw-bold mb-0">{{ $user->name }}</h5></a>
+
+        <span class="text-muted small">{{'@'. $user->username }}</span>
 
         <div class="d-flex align-items-center gap-3 mt-3 flex-wrap">
             <div class="text-center">
-                <div class="fw-bold">42</div>
+                <div class="fw-bold">{{ $user->posts->count() }}</div>
                 <div class="text-muted small">Posts</div>
             </div>
 
             <div class="vr"></div>
             <div class="text-center">
-                <a href="{{ route('perfil.seguidores') }}" class="text-decoration-none text-dark">
-                    <div class="fw-bold">1,2K</div>
+                <a href="{{ route('perfil.seguidores', encrypt($user->id)) }}" class="text-decoration-none text-dark">
+                    <div class="fw-bold">{{ $user->seguidores()->count() }}</div>
                     <div class="text-muted small">Seguidores</div>
                 </a>
 
@@ -27,8 +29,8 @@
 
             <div class="vr"></div>
             <div class="text-center">
-                <a href="{{ route('perfil.seguindo')}}" class="text-decoration-none text-dark">
-                    <div class="fw-bold">180</div>
+                <a href="{{ route('perfil.seguindo', encrypt($user->id))}}" class="text-decoration-none text-dark">
+                    <div class="fw-bold">{{$user->seguindo()->count()}}</div>
                     <div class="text-muted small">Seguindo</div>
                 </a>
 

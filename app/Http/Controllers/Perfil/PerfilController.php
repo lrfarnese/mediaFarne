@@ -11,20 +11,38 @@ class PerfilController extends Controller
 
     public function index($id)
     {
-
-        $user = User::find($id);
+        $user = User::with('posts.images', 'posts.likes', 'posts.dislikes')
+            ->findOrFail(decrypt($id));
 
         return view('perfil.index', compact('user'));
     }
 
-    public function seguidores()
+
+
+    public function seguidores($id)
     {
-        return view('perfil.follows');
+        $user = User::findOrFail(decrypt($id));
+
+        $titulo = 'Seguidores';
+        $usersFriend = $user->seguidores()->get();
+
+
+        $seguindoIds = auth()->user()->seguindo()->pluck('users.id')->toArray();
+
+        return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds'));
     }
 
-    public function seguindo()
+    public function seguindo($id)
     {
-        return view('perfil.follows');
+        $user = User::findOrFail(decrypt($id));
+
+        $titulo = 'Seguindo';
+        $usersFriend = $user->seguindo()->get();
+
+        $seguindoIds = auth()->user()->seguindo()->pluck('users.id')->toArray();
+
+        return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds'));
     }
+
 
 }

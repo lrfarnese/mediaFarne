@@ -12,7 +12,7 @@
     @endif
 
     @if(session('falha'))
-        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast align-items-center border-0 bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
                     {{ session('falha') }}

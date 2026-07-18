@@ -11,13 +11,13 @@
 
         <!-- Centro -->
         <div class="mx-auto text-decoration-none">
-            <span class="fw-bold text-white" 
+            <span class="fw-bold text-white"
                 style="font-size: 24px; letter-spacing: 1px; text-shadow: 0 2px 6px rgba(0,0,0,0.3);">
                 <span class="bi bi-image"></span>
                 MediaFarne
                 <span class="bi bi-pen-fill"></span>
             </span>
-        
+
         </div>
         <!-- Direita -->
         <div class="dropdown">
@@ -30,10 +30,10 @@
             <ul class="dropdown-menu dropdown-menu-end">
 
                     <li><a class="dropdown-item" href="{{ route('feed') }}">Feed Principal</a></li>
-                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a></li>
+                    <li><a class="dropdown-item" href="{{ route('perfil',auth()->user()->id) }}">Meu perfil</a></li>
                     <li><a class="dropdown-item" href="">Editar Perfil</a></li>
-                
-            
+
+
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
@@ -51,7 +51,7 @@
 <style>
     body {
         /* Ajuste esse valor de acordo com a altura da sua navbar */
-        padding-top: 70px; 
+        padding-top: 70px;
         background-color: #fafafa;
     }
     /* Se a sua barra de baixo também for fixa, use: */

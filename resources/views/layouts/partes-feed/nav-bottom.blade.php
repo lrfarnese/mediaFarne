@@ -4,14 +4,14 @@
 
         <!-- Home -->
         <a href="{{ route('feed') }}" class="nav-item text-dark text-decoration-none">
-            
+
             @if (request()->routeIs('perfil'))
                 <i class="bi bi-house fs-4"></i>
             @else
                 <i class="bi bi-house-fill fs-4"></i>
             @endif
-            
-    
+
+
         </a>
 
         <!-- Criar -->
@@ -21,16 +21,16 @@
                 data-bs-target="#createPostModal"
             ></i>
         </div>
-        
+
         <!-- Perfil -->
-        <a href="{{ route('perfil') }}" class="nav-item text-dark text-decoration-none">
-            
+        <a href="{{ route('perfil',encrypt(auth()->user()->id)) }}" class="nav-item text-dark text-decoration-none">
+
             @if (request()->routeIs('perfil'))
                 <i class="bi bi-person-fill fs-4 "></i>
             @else
                 <i class="bi bi-person fs-4"></i>
             @endif
-            
+
         </a>
 
     </div>
