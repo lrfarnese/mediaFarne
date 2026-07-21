@@ -12,6 +12,6 @@ class UserController extends Controller
     {
     $users = User::all();
 
-    return view('admin.admin-user',compact('users'));
+    return view('admin.user.admin-user',compact('users'));
     }
 }

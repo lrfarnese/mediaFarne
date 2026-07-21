@@ -16,7 +16,12 @@
         @foreach ($usersFriend as $user)
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-circle bg-secondary-subtle flex-shrink-0" style="width: 48px; height: 48px;"></div>
+                    <div class="rounded-circle flex-shrink-0 border overflow-hidden" style="width: 48px; height: 48px;">
+                        <img src="{{ $user->url_foto_perfil ? asset('storage/' . $user->url_foto_perfil) : asset('images/image.png') }}" 
+                            alt="{{ $user->username ?? 'Avatar' }}" 
+                            class="w-100 h-100" 
+                            style="object-fit: cover;">
+                    </div>
                     <div>
                         <a
                             class="text-decoration-none text-reset"

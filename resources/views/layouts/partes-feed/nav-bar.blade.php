@@ -21,18 +21,26 @@
         </div>
         <!-- Direita -->
         <div class="dropdown">
-            <button class="btn btn-light rounded-circle"
-                    type="button"
-                    data-bs-toggle="dropdown">
-                <i class="bi bi-person"></i>
+            <button class="btn btn-light rounded-circle p-0 border overflow-hidden"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="width: 38px; height: 38px;">
+                    <img src="{{ auth()->user()->url_foto_perfil ? asset('storage/' . auth()->user()->url_foto_perfil) : asset('images/image.png') }}" 
+                alt="{{ auth()->user()->username ?? 'Perfil' }}" 
+                class="w-100 h-100" 
+                style="object-fit: cover;">
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end">
 
                     <li><a class="dropdown-item" href="{{ route('feed') }}">Feed Principal</a></li>
-                    <li><a class="dropdown-item" href="{{ route('perfil',auth()->user()->id) }}">Meu perfil</a></li>
-                    <li><a class="dropdown-item" href="">Editar Perfil</a></li>
-
+                    <li><a class="dropdown-item" href="{{ route('perfil', encrypt(auth()->user()->id) ) }}">Meu perfil</a></li>
+                    @if (auth()->user()->type === 'admin')
+                        <li><a class="dropdown-item" href="{{ route('adminDashboard' ) }}">Menu Administrador</a></li>
+    
+                        
+                    @endif
 
                 <li><hr class="dropdown-divider"></li>
                 <li>

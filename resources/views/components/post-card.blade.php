@@ -2,6 +2,7 @@
     'username',
     'id' => null,
     'likes',
+    'fotoPerfil',
     'deslikes' => 0,
     'legenda',
     'imageUrl' => null,
@@ -11,8 +12,13 @@
 <div class="card border-1 mb-4 shadow-sm mx-auto" style="border-radius: 8px; overflow: hidden; background-color: #fff; max-width: 550px; width: 100%;">
 
     <div class="d-flex align-items-center p-3">
-        <div class="rounded-circle bg-secondary-subtle me-2" style="width: 32px; height: 32px;"></div>
-        <a href="{{ route('perfil', $id) }}" class="text-decoration-none text-reset">
+        <a href="{{ route('perfil', $id) }}" class="text-decoration-none text-reset d-flex align-items-center">
+            
+            <img src="{{ $fotoPerfil ? asset('storage/' . $fotoPerfil) : asset('images/image.png') }}" 
+                 alt="{{ $username }}" 
+                 class="rounded-circle me-2 border" 
+                 style="width: 32px; height: 32px; object-fit: cover;">
+
             <span class="fw-bold" style="font-size: 14px;">{{ $username }}</span>
         </a>
     </div>

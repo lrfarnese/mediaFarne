@@ -25,8 +25,8 @@
         <!-- Perfil -->
         <a href="{{ route('perfil',encrypt(auth()->user()->id)) }}" class="nav-item text-dark text-decoration-none">
 
-            @if (request()->routeIs('perfil'))
-                <i class="bi bi-person-fill fs-4 "></i>
+            @if (request()->routeIs('perfil*') && isset($user) && $user->id === auth()->id())
+                <i class="bi bi-person-fill fs-4"></i>
             @else
                 <i class="bi bi-person fs-4"></i>
             @endif

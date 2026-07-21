@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function(){
 
     //Rota de Perfil
     Route::get('/perfil/{id}',[PerfilController::class, 'index'])->name('perfil');
-
+    Route::put('/perfil/{id}/update', [PerfilController::class , 'update'])->name('perfil.update');
     //Rotas de administrar seguidos
 
     Route::get('/perfil/{id}/seguidores', [PerfilController::class, 'seguidores'])

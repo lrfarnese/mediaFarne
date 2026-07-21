@@ -12,11 +12,12 @@ class FeedController extends Controller
     public function index(){
 
         $userAleatorios = User::inRandomOrder()->limit(5)->get();
+        
 
         $posts = Post::with('user','images')
         ->withCount(['likes', 'dislikes'])
         ->latest()
-        ->paginate(10);
+        ->paginate(15);
 
         return view('feed.index', compact('posts','userAleatorios'));
 

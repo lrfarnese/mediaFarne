@@ -1,8 +1,12 @@
 <div class="d-flex align-items-center gap-4 mb-3 flex-wrap">
 
     {{-- Avatar --}}
-    <div class="rounded-circle bg-black d-flex align-items-center justify-content-center flex-shrink-0"
-        style="width:90px; height:90px;">
+    <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 border overflow-hidden"
+     style="width:90px; height:90px;">
+        <img src="{{ $user->url_foto_perfil ? asset('storage/' . $user->url_foto_perfil) : asset('images/image.png') }}" 
+            alt="{{ $user->username ?? 'Avatar' }}" 
+            class="w-100 h-100" 
+            style="object-fit: cover;">
     </div>
 
     {{-- Nome + stats --}}

@@ -117,6 +117,7 @@
                         <x-post-card
                             :username="$post->user->username"
                             :id="encrypt($post->user->id) "
+                            :fotoPerfil="$post->user->url_foto_perfil"
                             :likes="$post->likes->count()"
                             :deslikes="$post->dislikes->count()"
                             :legenda="$post->content"
@@ -144,8 +145,19 @@
                     @foreach($userAleatorios as $user)
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <div class="d-flex align-items-center">
-                                <div class="bg-light border rounded-circle" style="width: 32px; height: 32px;"></div>
+                                <a href="{{ route('perfil', encrypt($user->id)) }}"
+                                class="text-decoration-none text-reset d-flex align-items-center"
+                                >
+                                <div class="rounded-circle flex-shrink-0 border overflow-hidden" style="width: 32px; height: 32px;">
+                                    <img src="{{ $user->url_foto_perfil ? asset('storage/' . $user->url_foto_perfil) : asset('images/image.png') }}" 
+                                    alt="{{ $user->username ?? 'Avatar' }}" 
+                                    class="w-100 h-100" 
+                                    style="object-fit: cover;">
+                                </div>
                                 <span class="ms-2 fw-semibold small">{{$user->name}}</span>
+
+                                </a>
+                                
                             </div>
                             <a href="#" class="btn btn-sm text-primary fw-bold p-0" style="font-size: 12px;">Seguir</a>
                         </div>

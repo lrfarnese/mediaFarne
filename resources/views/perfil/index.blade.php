@@ -8,6 +8,14 @@
 
     <div class="container py-4" style="max-width: 820px;">
 
+        @if (auth()->check() && $user->id !== auth()->id())
+            <div class="mb-3">
+                <a href="{{ url()->previous() }}" class="btn btn-sm btn-light border rounded-pill px-3 shadow-sm d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        @endif
+
         {{-- ===== HEADER DO PERFIL ===== --}}
         @include('perfil.componentes-perfil.header')
 

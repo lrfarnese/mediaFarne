@@ -71,6 +71,7 @@
 
                     <x-post-card
                         :username="$post->user->username"
+                        :fotoPerfil="$post->user->url_foto_perfil"
                         :id="encrypt($post->user->id)"
                         :likes="$post->likes->count()"
                         :deslikes="$post->dislikes->count()"
