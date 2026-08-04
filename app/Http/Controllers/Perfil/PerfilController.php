@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class PerfilController extends Controller
 {
@@ -52,6 +53,40 @@ class PerfilController extends Controller
         return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds'));
     }
 
+    public function seguir($id)
+    {
+        try {
+            $id = decrypt($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+
+        $usuarioLogado = auth()->user();
+
+        if ((int) $usuarioLogado->id === (int) $id) {
+            return back()->with('erro', 'Você não pode seguir a si mesmo.');
+        }
+
+        if (! $usuarioLogado->estaSeguindo(User::find($id))) {
+            $usuarioLogado->seguindo()->attach($id);
+        }
+
+        return back()->with('sucesso', 'Agora você está seguindo esse usuário.');
+    }
+
+    public function deixarDeSeguir($id)
+    {
+        try {
+            $id = decrypt($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+
+        auth()->user()->seguindo()->detach($id);
+
+        return back()->with('sucesso', 'Você deixou de seguir esse usuário.');
+    }
+
    public function update(Request $request, $id)
     {
         
@@ -78,7 +113,7 @@ class PerfilController extends Controller
                 'max:255',
                 Rule::unique('users', 'username')->ignore($user->id), 
             ],
-            'foto' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'], 
+            'foto' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'], 
         ]);
 
         $user->username = $request->username;

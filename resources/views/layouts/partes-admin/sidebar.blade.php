@@ -29,8 +29,8 @@
 
                 <!-- Users -->
                 <li class="nav-item">
-                    <a href="{{ route('adminUser') }}" 
-                       class="nav-link {{ request()->routeIs('adminUser*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.user') }}" 
+                       class="nav-link {{ request()->routeIs('admin.user*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-person"></i>
                         <p>Usuários</p>
                     </a>

@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
 @section('content')
-    {{-- Estilos para travar a rolagem da tela e liberar apenas o feed central no Desktop --}}
+    
     <style>
         @media (min-width: 768px) {
             .fixed-viewport-row {
-                height: calc(100vh - 90px); /* Ocupa a altura da tela descontando a navbar superior */
+                height: calc(100vh - 90px); 
                 overflow: hidden;
             }
             .scrollable-feed {
                 height: 100%;
                 overflow-y: auto;
-                scrollbar-width: none; /* Oculta barra de rolagem no Firefox */
+                scrollbar-width: none; 
             }
             .scrollable-feed::-webkit-scrollbar {
-                display: none; /* Oculta barra de rolagem no Chrome/Safari */
+                display: none; 
             }
             .sticky-sidebar {
                 height: 100%;
@@ -99,14 +99,20 @@
                 <div class="d-flex justify-content-center bg-white p-2 border shadow-sm mb-4" style="border-radius: 50px;">
                     <ul class="nav nav-pills nav-fill w-100" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active rounded-pill fw-bold py-1" style="font-size: 13px;" id="pills-following-tab" data-bs-toggle="pill" type="button">
-                                Explorar
-                            </button>
+                            <a href="{{ route('feed') }}" class="text-decoration-none text-reset">
+                                <button class="nav-link rounded-pill fw-bold py-1 {{ request()->routeIs('feed') ? 'active' : '' }}" 
+                                        style="font-size: 13px;" id="pills-following-tab" type="button">
+                                    Explorar
+                                </button>
+                            </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill fw-bold py-1" style="font-size: 13px;" id="pills-global-tab" data-bs-toggle="pill" type="button">
-                                Seguindo
-                            </button>
+                            <a href="{{ route('feed.seguindo') }}" class="text-decoration-none text-reset">
+                                <button class="nav-link rounded-pill fw-bold py-1 {{ request()->routeIs('feed.seguindo') ? 'active' : '' }}" 
+                                        style="font-size: 13px;" id="pills-global-tab" type="button">
+                                    Seguindo
+                                </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -118,8 +124,8 @@
                             :username="$post->user->username"
                             :id="encrypt($post->user->id) "
                             :fotoPerfil="$post->user->url_foto_perfil"
-                            :likes="$post->likes->count()"
-                            :deslikes="$post->dislikes->count()"
+                            :likes="$post->likes_count"
+                            :deslikes="$post->dislikes_count"
                             :legenda="$post->content"
                             :imageUrl="$post->images->isNotEmpty() ? asset('storage/' . $post->images->first()->url) : null"
                             :date="$post->created_at"
@@ -140,30 +146,37 @@
             <div class="d-none d-xl-block col-xl-3 ms-3 sticky-sidebar">
 
                 <div class="bg-white p-3 border rounded-4 shadow-sm">
-                    <h6 class="fw-bold text-muted mb-3" style="font-size: 13px;">Sugestões para você</h6>
+                <h6 class="fw-bold text-muted mb-3" style="font-size: 13px;">Pesquisar Usuários</h6>
 
-                    @foreach($userAleatorios as $user)
+                <form action="{{ url()->current() }}" method="GET" class="mb-4">
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="search" class="form-control shadow-none" placeholder="Buscar usuário..." value="{{ request('search') }}">
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                    </div>
+                </form>
+
+                @if($usuarios->isNotEmpty())
+                    @foreach($usuarios as $user)
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('perfil', encrypt($user->id)) }}"
-                                class="text-decoration-none text-reset d-flex align-items-center"
-                                >
-                                <div class="rounded-circle flex-shrink-0 border overflow-hidden" style="width: 32px; height: 32px;">
-                                    <img src="{{ $user->url_foto_perfil ? asset('storage/' . $user->url_foto_perfil) : asset('images/image.png') }}" 
-                                    alt="{{ $user->username ?? 'Avatar' }}" 
-                                    class="w-100 h-100" 
-                                    style="object-fit: cover;">
-                                </div>
-                                <span class="ms-2 fw-semibold small">{{$user->name}}</span>
-
+                                class="text-decoration-none text-reset d-flex align-items-center">
+                                    <div class="rounded-circle flex-shrink-0 border overflow-hidden" style="width: 32px; height: 32px;">
+                                        <img src="{{ $user->url_foto_perfil ? asset('storage/' . $user->url_foto_perfil) : asset('images/image.png') }}" 
+                                            alt="{{ $user->username ?? 'Avatar' }}" 
+                                            class="w-100 h-100" 
+                                            style="object-fit: cover;">
+                                    </div>
+                                    <span class="ms-2 fw-semibold small">{{$user->name}}</span>
                                 </a>
-                                
                             </div>
-                            <a href="#" class="btn btn-sm text-primary fw-bold p-0" style="font-size: 12px;">Seguir</a>
                         </div>
                     @endforeach
-
-
+                @else
+                    <div class="text-center text-muted small">
+                        Nenhum usuário encontrado.
+                    </div>
+                @endif
             </div>
 
         </div>

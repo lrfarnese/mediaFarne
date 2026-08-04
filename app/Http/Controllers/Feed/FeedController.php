@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $userAleatorios = User::inRandomOrder()->limit(5)->get();
+
+        $search = $request->input('search');
+        
+        if ($search) {
+            
+            $usuarios = User::where('name', 'LIKE', "%{$search}%")
+                            ->take(5)
+                            ->get();
+        } else {
+            
+            $usuarios = User::orderBy('created_at', 'desc')->take(5)->get();
+        }
         
 
         $posts = Post::with('user','images')
@@ -19,8 +30,33 @@ class FeedController extends Controller
         ->latest()
         ->paginate(15);
 
-        return view('feed.index', compact('posts','userAleatorios'));
+        return view('feed.index', compact('posts','usuarios'));
 
+    }
+    public function postsSeguindo(Request $request){
+
+        $search = $request->input('search');
+        
+        if ($search) {
+            
+            $usuarios = User::where('name', 'LIKE', "%{$search}%")
+                            ->take(5)
+                            ->get();
+        } else {
+            
+            $usuarios = User::orderBy('created_at', 'desc')->take(5)->get();
+        }
+        
+
+        $seguindoIds = auth()->user()->seguindo()->pluck('users.id');
+
+        $posts = Post::whereIn('user_id', $seguindoIds)
+            ->with('user', 'images')
+            ->withCount(['likes', 'dislikes'])
+            ->latest()
+            ->paginate(15);
+        
+        return view('feed.index', compact('posts','usuarios'));
     }
 
 }

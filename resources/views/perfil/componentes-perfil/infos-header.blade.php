@@ -15,9 +15,27 @@
                 <i class="bi bi-pencil-fill me-2"></i>Editar Perfil
             </a>
         @else
-            <button class="btn btn-primary btn-sm w-100 rounded-3 fw-semibold py-2 shadow-sm">
-                <i class="bi bi-person-plus-fill me-2"></i>Seguir
-            </button>
+
+
+            @if (auth()->user()->estaSeguindo($user))
+                <form action="{{ route('perfil.deixarDeSeguir', encrypt($user->id)) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-outline-secondary btn-sm w-100 rounded-3 fw-semibold py-2 shadow-sm">
+                        <i class="bi bi-person-check-fill me-2"></i>Seguindo
+                    </button>
+                </form>
+            @else
+                <form action="{{ route('perfil.seguir', encrypt($user->id)) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-primary btn-sm w-100 rounded-3 fw-semibold py-2 shadow-sm">
+                        <i class="bi bi-person-plus-fill me-2"></i>Seguir
+                    </button>
+                </form>
+            @endif
+            
+
+
+
         @endif
     </div>
 </div>
@@ -80,6 +98,7 @@
                     <button type="button" class="btn btn-light border rounded-3" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary rounded-3 fw-semibold px-4">Salvar</button>
                 </div>
+                <input type="hidden" name="_modal" value="editProfileModal">
             </form>
         </div>
     </div>

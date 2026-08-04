@@ -27,7 +27,8 @@
         });
 
         @if($errors->any())
-        var modalEl = document.getElementById('createPostModal');
+        var modalId = "{{ old('_modal') }}";
+        var modalEl = modalId ? document.getElementById(modalId) : null;
         if (modalEl) {
             bootstrap.Modal.getOrCreateInstance(modalEl).show();
         }

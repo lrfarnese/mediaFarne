@@ -1,64 +1,115 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="mb-2">Administrativo Usuários</h2>
+<div class="container-fluid px-0">
 
-    <div class="input-group mb-3 mt-1">
-        <input 
-            type="text" 
-            class="form-control"
-            name="keyword"
-            placeholder="Pesquisa por nome ou email ou data nascimento"
-            value=""
-        >
-        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0 fw-semibold">Administrativo Usuários</h4>
+        
+    </div>
+    @if(session('sucesso'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('sucesso') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    @if(session('erro'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('erro') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    <form method="GET" action="" class="mb-3">
+        <div class="input-group input-group-sm" style="max-width: 420px;">
+            <input
+                type="text"
+                class="form-control"
+                name="keyword"
+                placeholder="Nome, email ou data de nascimento"
+                value="{{ request('keyword') }}"
+            >
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 small">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-3">#</th>
+                            <th>Nome</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Nascimento</th>
+                            <th>Criado em</th>
+                            <th class="text-end pe-3">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($users as $user)
+                            <tr>
+                                <td class="ps-3 text-muted">{{ $user->id }}</td>
+                                <td class="fw-medium">{{ $user->name }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                                    <span class="badge {{ $user->type === 'admin' ? 'bg-danger' : 'bg-secondary' }}">
+                                        {{ $user->type }}
+                                    </span>
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($user->data_nascimento)->format('d/m/Y') }}</td>
+                                <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                                <td class="text-end pe-3">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ route('perfil', encrypt($user->id)) }}"
+                                           class="btn btn-outline-warning" title="Visualizar Perfil">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-outline-primary" title="Editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <form action="{{ route('admin.user.destroy', encrypt($user->id)) }}"
+                                              method="POST" class="d-inline"
+                                              onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger" title="Excluir">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="text-center text-muted py-4">
+                                    Nenhum usuário encontrado.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th>Tipo</th>
-                <th scope="col">Data Nascimento</th>
-                <th scope="col">Data Criação</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user)
-                <tr>
-                    <td>{{ $user['id'] }}</td>
+    <div class="d-flex justify-content-center mt-3">
+        {{ $users->links() }}
+    </div>
 
-                    <td>{{ $user['name'] }}</td>
+    <a href=""
+        class="btn btn-primary rounded-circle shadow position-fixed d-flex align-items-center justify-content-center"
+        style="width: 56px; height: 56px; bottom: 32px; right: 32px; z-index: 999; font-size: 22px;">
+        <i class="bi bi-plus-lg"></i>
+    </a>
 
-                    <td>{{ $user['email'] }}</td>
-
-                    <td>{{ $user['type'] }}</td>
-
-                    <td>12/02/2009</td>
-                    
-                    <td>12/02/2009</td>
-
-                    <td>
-                        <a href="" class="btn btn-warning btn-sm">
-                            Vizualizar Perfil
-                        </a>
-                        <a href="" class="btn btn-primary btn-sm">
-                            Editar
-                        </a>
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            Excluir
-                        </button>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        <a href=""
-            class="btn btn-primary rounded-circle shadow position-fixed d-flex align-items-center justify-content-center"
-            style="width: 56px; height: 56px; bottom: 32px; right: 32px; z-index: 999; font-size: 24px;">
-            <i class="bi bi-plus"></i>
-        </a>
-    </table>
+</div>
 @endsection

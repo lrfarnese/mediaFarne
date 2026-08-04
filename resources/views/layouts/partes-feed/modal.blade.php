@@ -25,6 +25,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary px-4">Compartilhar</button>
+                    <input type="hidden" name="_modal" value="createPostModal">
                 </form>
             </div>
 

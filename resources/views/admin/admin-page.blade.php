@@ -18,7 +18,7 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>1000000000</h3>
+                            <h3>{{$usersTotal}}</h3>
                             <p>Usuários</p>
                         </div>
                         <div class="icon">
@@ -30,7 +30,7 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>12</h3>
+                            <h3>{{$postsTotal}}</h3>
                             <p>Posts</p>
                         </div>
                         <div class="icon">
@@ -42,8 +42,8 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>32</h3>
-                            <p>Interações</p>
+                            <h3>{{ $interacoesTotal }}</h3>
+                            <p>Interações Totais</p>
                         </div>
                         <div class="icon">
                             <i class="bi bi-heart-fill"></i>
@@ -54,8 +54,8 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>5</h3>
-                            <p>Usuários Cadastrados</p>
+                            <h3>{{ $usersAdmin }}</h3>
+                            <p>Usuários Administradores</p>
                         </div>
                         <div class="icon">
                             <i class="bi bi-person-plus-fill"></i>
@@ -110,7 +110,24 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-center"
                              style="min-height: 180px; background: #f8f9fa;">
-                            <span class="text-muted">[ Tabela aqui ]</span>
+                            <span class="text-muted">
+                                <div class="card-body p-0">
+                                    <table class="table table-sm mb-0">
+                                    <thead>
+                                        <tr><th>Usuário</th><th>Email</th><th>Cadastro</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($usuariosRecentes as $user)
+                                            <tr>
+                                                <td>{{ $user->username ?? $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            </span>
                         </div>
                     </div>
                 </div>

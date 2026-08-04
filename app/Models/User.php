@@ -61,6 +61,11 @@ class User extends Authenticatable
         );
     }
 
+    public function estaSeguindo(User $usuario)
+    {
+        return $this->seguindo()->where('follow_user_id', $usuario->id)->exists();
+    }
+
 
 
 }

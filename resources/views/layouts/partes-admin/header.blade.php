@@ -17,11 +17,7 @@
         <!--Lupinha de pesquisa-->
         <ul class="navbar-nav ms-auto">
         <!--begin::Navbar Search-->
-        <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="bi bi-search"></i>
-            </a>
-        </li>
+        
         <!--end::Navbar Search-->
 
 
@@ -36,35 +32,37 @@
 
         <!--Entra no menu quando clica no nome usuario-->
         <li class="nav-item dropdown user-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-            <img
-                src=""
-                class="user-image rounded-circle shadow"
-                alt="User Image"
-            />
-            <span class="d-none d-md-inline">Nome Admin</span>
+            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                <span class="rounded-circle border overflow-hidden d-inline-block me-2"
+                    style="width: 38px; height: 38px;">
+                    <img
+                        src="{{ auth()->user()->url_foto_perfil ? asset('storage/' . auth()->user()->url_foto_perfil) : asset('images/image.png') }}"
+                        class="w-100 h-100"
+                        style="object-fit: cover;"
+                        alt="{{ auth()->user()->name }}"
+                    />
+                </span>
+                <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
             <!--begin::User Image-->
-            <li class="user-header text-bg-primary">
-                <img
-                src=""
-                class="rounded-circle shadow"
-                alt="User Image"
-                />
-                <p>
-                Onde vai ficar nome ADMIN
-                <small>Data</small>
-                </p>
-            </li>
+            
             <!--end::User Image-->
             <!--begin::Menu Body-->
             
             <!--end::Menu Body-->
             <!--begin::Menu Footer-->
             <li class="user-footer">
-                <a href="#" class="btn btn-outline-secondary">Editar Perfil</a>
-                <a href="{{ route('logout') }}" class="btn btn-outline-danger float-end">Sair</a>
+                <a href="{{ route('feed') }}" class="btn btn-outline-secondary">
+                    Visualizar Site
+                </a>
+
+                <form action="{{ route('logout') }}" method="POST" class="d-inline float-end">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger">
+                        Sair
+                    </button>
+                </form>
             </li>
             <!--end::Menu Footer-->
             </ul>
