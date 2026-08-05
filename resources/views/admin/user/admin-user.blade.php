@@ -72,7 +72,7 @@
                                            class="btn btn-outline-warning" title="Visualizar Perfil">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href=""
+                                        <a href="{{ route('admin.user.edit',encrypt($user->id) ) }}"
                                            class="btn btn-outline-primary" title="Editar">
                                             <i class="bi bi-pencil"></i>
                                         </a>
@@ -105,7 +105,7 @@
         {{ $users->links() }}
     </div>
 
-    <a href=""
+    <a href="{{ route('admin.user.create') }}"
         class="btn btn-primary rounded-circle shadow position-fixed d-flex align-items-center justify-content-center"
         style="width: 56px; height: 56px; bottom: 32px; right: 32px; z-index: 999; font-size: 22px;">
         <i class="bi bi-plus-lg"></i>

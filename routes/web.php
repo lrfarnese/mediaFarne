@@ -38,12 +38,22 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::middleware(['auth', 'is_admin'])->group(function(){
+    
+    //Admin Dashboard
+    Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
+
+    //Admin User
     Route::get('/admin/users',[AdminUserController::class,'index'])->name('admin.user');
     Route::delete('/admin/users/{id}/destroy',[AdminUserController::class,'destroy'])->name('admin.user.destroy');
+    Route::get('admin/users/{id}/edit',[AdminUserController::class, 'edit'])->name('admin.user.edit');
+    Route::put('admin/users/{id}/update',[AdminUserController::class ,'update'])->name('admin.user.update');
+    Route::get('admin/users/create',[AdminUserController::class ,'create'])->name('admin.user.create');
+    Route::post('admin/users/store',[AdminUserController::class ,'store'])->name('admin.user.store');
 
-
-    Route::get('/admin/post',[AdminPostController::class,'index'])->name('adminPost');
-    Route::get('/admin',[AdminDashboardController::class,'index'])->name('adminDashboard');
+    //Admin Posts
+    Route::get('/admin/posts',[AdminPostController::class,'index'])->name('admin.post');
+    Route::delete('/admin/posts/{id}/destroy',[AdminPostController::class,'destroy'])->name('admin.post.destroy');
+    Route::get('/admin/posts/{id}/view',[AdminPostController::class, 'viewPost'])->name('admin.post.view');
 });
 
 

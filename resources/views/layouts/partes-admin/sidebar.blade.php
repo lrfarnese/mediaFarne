@@ -38,8 +38,8 @@
 
                 <!-- Posts -->
                 <li class="nav-item">
-                    <a href="{{ route('adminPost') }}" 
-                       class="nav-link {{ request()->routeIs('adminPost*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.post') }}" 
+                       class="nav-link {{ request()->routeIs('admin.post*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-postage"></i>
                         <p>Postagens</p>
                     </a>

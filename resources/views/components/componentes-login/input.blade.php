@@ -1,4 +1,3 @@
-
 <div class="input-group mb-3">
 
 
@@ -12,7 +11,7 @@
     class="form-control @error( $name ) is-invalid @enderror"
     name="{{ $name  ?? '' }}"
     placeholder="{{ $placeholder ?? '' }}"
-    value="{{ old($name) }}"
+    value="{{ old($name, $value ?? '') }}"
     >
 
     @error($name)
