@@ -41,13 +41,10 @@
                             <i class="bi bi-arrow-clockwise"></i> Atualizar Feed
                         </a>
 
-                        <button class="btn btn-outline-secondary btn-sm rounded-3 fw-semibold py-2 d-flex align-items-center justify-content-center gap-2 text-start px-3">
-                            <i class="bi bi bi-heart fs-5 me-2"></i> Posts Curtidos
-                        </button>
-
-                        <button class="btn btn-outline-secondary btn-sm rounded-3 fw-semibold py-2 d-flex align-items-center justify-content-center gap-2 text-start px-3">
-                            <i class="bi bi-heartbreak fs-5 me-2"></i> Posts Descurtidos
-                        </button>
+                        <a href="{{ route('feed.curtidos') }}" class="btn btn-outline-secondary btn-sm rounded-3 fw-semibold py-2 d-flex align-items-center justify-content-center gap-2 text-start px-3 {{ request()->routeIs('feed.curtidos') ? 'active' : '' }}">
+                            <i class="bi bi-heart fs-5 me-2"></i> Posts Curtidos
+                        </a>
+                            
                     </div>
                 </div>
 
@@ -123,12 +120,14 @@
                         <x-post-card
                             :username="$post->user->username"
                             :id="encrypt($post->user->id) "
+                            :postId="$post->id"
                             :fotoPerfil="$post->user->url_foto_perfil"
                             :likes="$post->likes_count"
                             :deslikes="$post->dislikes_count"
                             :legenda="$post->content"
                             :imageUrl="$post->images->isNotEmpty() ? asset('storage/' . $post->images->first()->url) : null"
                             :date="$post->created_at"
+                            :userReaction="$post->interactions->first()?->type"
                         />
                     </div>
                 @empty

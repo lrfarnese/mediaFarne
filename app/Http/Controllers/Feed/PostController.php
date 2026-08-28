@@ -62,7 +62,7 @@ class PostController extends Controller
                     ->with('falha', 'Post não encontrado!');
             }
 
-            // Verificação de autorização no backend (essencial!)
+            
             if (auth()->id() !== $post->user_id) {
                 abort(403, 'Ação não autorizada.');
             }

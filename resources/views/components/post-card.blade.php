@@ -1,15 +1,17 @@
 @props([
     'username',
     'id' => null,
+    'postId',
     'likes',
     'fotoPerfil',
     'deslikes' => 0,
     'legenda',
     'imageUrl' => null,
-    'date'
+    'date',
+    'userReaction' => null
 ])
-
-<div class="card border-1 mb-4 shadow-sm mx-auto" style="border-radius: 8px; overflow: hidden; background-color: #fff; max-width: 550px; width: 100%;">
+@vite('resources/css/app.css')
+<div class="card border-1 mb-4 shadow-sm mx-auto post-card" data-post-id="{{ $postId }}" style="border-radius: 8px; overflow: hidden; background-color: #fff; max-width: 550px; width: 100%;">
 
     <div class="d-flex align-items-center p-3">
         <a href="{{ route('perfil', $id) }}" class="text-decoration-none text-reset d-flex align-items-center">
@@ -32,13 +34,19 @@
     <div class="p-3">
         <div class="d-flex align-items-center mb-2">
             <div class="d-flex align-items-center me-4">
-                <i class="bi bi-heart fs-5 me-2" style="cursor: pointer;"></i>
-                <span class="fw-bold" style="font-size: 14px;">{{ $likes }}</span>
+                <i class="bi {{ $userReaction === 'Like' ? 'bi-heart-fill text-danger' : 'bi-heart' }} btn-like fs-5 me-2"
+                   style="cursor: pointer;"
+                   data-post-id="{{ $postId }}"
+                   data-type="Like"></i>
+                <span class="fw-bold likes-count" style="font-size: 14px;">{{ $likes }}</span>
             </div>
 
             <div class="d-flex align-items-center">
-                <i class="bi bi-heartbreak fs-5 me-2" style="cursor: pointer;"></i>
-                <span class="fw-bold" style="font-size: 14px;">{{ $deslikes }}</span>
+                <i class="bi {{ $userReaction === 'Deslike' ? 'bi-heartbreak-fill text-primary' : 'bi-heartbreak' }} btn-dislike fs-5 me-2"
+                   style="cursor: pointer;"
+                   data-post-id="{{ $postId }}"
+                   data-type="Deslike"></i>
+                <span class="fw-bold dislikes-count" style="font-size: 14px;">{{ $deslikes }}</span>
             </div>
         </div>
 
@@ -51,3 +59,4 @@
         </div>
     </div>
 </div>
+@vite('resources/js/app.js')

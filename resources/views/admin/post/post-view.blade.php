@@ -17,12 +17,14 @@
                 <x-post-card
                     :username="$post->user->username"
                     :id="encrypt($post->user->id)"
+                    :postId="$post->id"
                     :fotoPerfil="$post->user->url_foto_perfil"
                     :likes="$post->likes_count"
                     :deslikes="$post->dislikes_count"
                     :legenda="$post->content"
                     :imageUrl="$post->images->isNotEmpty() ? asset('storage/' . $post->images->first()->url) : null"
                     :date="$post->created_at->format('d/m/Y \à\s H:i')"
+                    :userReaction="$post->interactions->first()?->type"
                 />
             </div>
 

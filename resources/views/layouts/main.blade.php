@@ -6,6 +6,7 @@
     <title>Feed Media Farne</title>
     @vite('resources/css/app.css')
     @stack('styles')
+     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @include('layouts.partes-feed.nav-bar')

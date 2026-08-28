@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Feed\FeedController;
+use App\Http\Controllers\Feed\InteractionsController;
 use App\Http\Controllers\Feed\PostController;
 use App\Http\Controllers\Perfil\PerfilController;
 
@@ -15,9 +16,13 @@ Route::middleware(['auth'])->group(function(){
     //Rotas Tela Feed
     Route::get('/',[FeedController::class, 'index'])->name('feed');
     Route::get('/seguindo/posts',[FeedController::class, 'postsSeguindo'])->name('feed.seguindo');
+    Route::get('/posts/curtidos', [FeedController::class, 'postsCurtidos'])->name('feed.curtidos');
     //Rotas Postagens
     Route::post('/post/store',[PostController::class, 'store'])->name('posts.store');
     Route::delete('/post/{id}/destroy',[PostController::class, 'destroy'])->name('posts.destroy');
+
+    //Rota interacoe
+    Route::post('/posts/{post}/interact', [InteractionsController::class, 'store'])->name('posts.interact');
 
     //Rota de Perfil
     Route::get('/perfil/{id}',[PerfilController::class, 'index'])->name('perfil');

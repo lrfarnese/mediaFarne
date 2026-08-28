@@ -72,12 +72,14 @@
                     <x-post-card
                         :username="$post->user->username"
                         :fotoPerfil="$post->user->url_foto_perfil"
+                        :postId="$post->id"
                         :id="encrypt($post->user->id)"
                         :likes="$post->likes->count()"
                         :deslikes="$post->dislikes->count()"
                         :legenda="$post->content"
                         :imageUrl="$post->images->isNotEmpty() ? asset('storage/' . $post->images->first()->url) : null"
                         :date="$post->created_at"
+                        :userReaction="$post->interactions->first()?->type"
                     />
                 </div>
             </div>
