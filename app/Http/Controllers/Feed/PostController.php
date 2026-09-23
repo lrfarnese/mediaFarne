@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -62,17 +63,32 @@ class PostController extends Controller
                     ->with('falha', 'Post não encontrado!');
             }
 
-            
             if (auth()->id() !== $post->user_id) {
                 abort(403, 'Ação não autorizada.');
             }
 
+            DB::beginTransaction();
+
+            foreach ($post->images as $image) {
+                Storage::disk('public')->delete($image->url);
+                $image->delete();
+            }
+
             $post->delete();
+
+            DB::commit();
 
             return redirect()->route('perfil', encrypt(auth()->id()))
                 ->with('sucesso', 'Post apagado com sucesso!');
 
         } catch (\Throwable $e) {
+            DB::rollBack();
+
+            Log::error('Erro ao apagar post: ' . $e->getMessage(), [
+                'user_id' => auth()->id(),
+                'exception' => $e
+            ]);
+
             return redirect()->route('perfil', encrypt(auth()->id()))
                 ->with('falha', 'Erro ao apagar o post!');
         }
