@@ -30,8 +30,12 @@ class AuthApiController extends Controller
         $token = $user->createToken('flutter-token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
-            'token' => $token,
+            'success' => true,
+            'message' => 'Login realizado com sucesso',
+            'data' => [
+                'user' => $user,
+                'token' => $token,
+            ]
         ]);
     }
 
@@ -39,12 +43,21 @@ class AuthApiController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['mensagem' => 'Usuário Deslogado']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Usuário deslogado com sucesso'
+        ]);
+
     }
 
     public function me(Request $request)
     {
-        return response()->json($request->user());
+        $user = $request->user()->loadCount(['posts', 'seguidores', 'seguindo']);
+
+        return response()->json([
+            'success' => true,
+            'data' => $user
+        ]);
     }
 
 
