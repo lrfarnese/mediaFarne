@@ -32,13 +32,14 @@ class PerfilController extends Controller
     {
         $user = User::findOrFail(decrypt($id));
 
+        
         $titulo = 'Seguidores';
         $usersFriend = $user->seguidores()->get();
 
 
         $seguindoIds = auth()->user()->seguindo()->pluck('users.id')->toArray();
 
-        return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds'));
+        return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds','user'));
     }
 
     public function seguindo($id)
@@ -50,7 +51,7 @@ class PerfilController extends Controller
 
         $seguindoIds = auth()->user()->seguindo()->pluck('users.id')->toArray();
 
-        return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds'));
+        return view('perfil.follows', compact('titulo', 'usersFriend', 'seguindoIds','user'));
     }
 
     public function seguir($id)

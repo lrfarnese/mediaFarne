@@ -79,7 +79,9 @@
                         :legenda="$post->content"
                         :imageUrl="$post->images->isNotEmpty() ? asset('storage/' . $post->images->first()->url) : null"
                         :date="$post->created_at"
-                        :userReaction="$post->interactions->first()?->type"
+                        :userReaction="auth()->check()
+                                    ? $post->interactions->firstWhere('user_id', auth()->id())?->type
+                                    : null"
                     />
                 </div>
             </div>

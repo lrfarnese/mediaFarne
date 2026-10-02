@@ -41,6 +41,10 @@ class UserController extends Controller
                 return redirect()->route('admin.user')
                                 ->with('erro', 'Usuário não encontrado.');
             }
+            if($user->id === auth()->id()){
+                return redirect()->route('admin.user')
+                                ->with('erro', 'Não é possivel apagar o próprio perfil.');
+            }
 
             $user->delete();
 

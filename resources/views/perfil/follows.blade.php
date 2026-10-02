@@ -2,7 +2,7 @@
 @section('content')
 <div class="container py-4" style="max-width: 480px;">
     <div class="d-flex align-items-center gap-3 mb-4">
-        <a href="{{ route('feed') }}" class="text-dark text-decoration-none">
+        <a href="{{ route('perfil',encrypt($user->id)) }}" class="text-dark text-decoration-none">
             <i class="bi bi-arrow-left fs-5"></i>
         </a>
         <h6 class="mb-0 fw-bold fs-5">{{ $titulo }}</h6>
@@ -31,21 +31,24 @@
                         </a>
                     </div>
                 </div>
-                @if(in_array($user->id, $seguindoIds))
-                    <form action="{{ route('perfil.deixarDeSeguir', encrypt($user->id)) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-secondary btn-sm px-3" style="font-size: 13px; border-radius: 8px;">
-                            Seguindo
-                        </button>
-                    </form>
-                @else
-                    <form action="{{ route('perfil.seguir', encrypt($user->id)) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-dark btn-sm px-3" style="font-size: 13px; border-radius: 8px;">
-                            Seguir
-                        </button>
-                    </form>
+                @if (auth()->id() !== $user->id)
+                    @if(in_array($user->id, $seguindoIds))
+                        <form action="{{ route('perfil.deixarDeSeguir', encrypt($user->id)) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-secondary btn-sm px-3" style="font-size: 13px; border-radius: 8px;">
+                                Seguindo
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('perfil.seguir', encrypt($user->id)) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-dark btn-sm px-3" style="font-size: 13px; border-radius: 8px;">
+                                Seguir
+                            </button>
+                        </form>
+                    @endif
                 @endif
+        
             </div>
             @if(!$loop->last)
                 <hr class="my-0 text-muted opacity-25">

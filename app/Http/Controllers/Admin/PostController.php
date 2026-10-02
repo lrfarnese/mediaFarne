@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -30,24 +33,42 @@ class PostController extends Controller
 
     public function destroy($id)
     {
+        
         try {
-            $post = Post::find(decrypt($id));
+            $post = Post::with('images')->find(decrypt($id));
 
             if (!$post) {
                 return redirect()->route('admin.post')
-                                 ->with('erro', 'Post não encontrado.');
+                                ->with('erro', 'Post não encontrado.');
+            }
+
+            DB::beginTransaction();
+
+            foreach ($post->images as $image) {
+                Storage::disk('public')->delete($image->url);
+                $image->delete();
             }
 
             $post->delete();
 
+            DB::commit();
+
             return redirect()->route('admin.post')
-                             ->with('sucesso', 'Post deletado com sucesso!');
+                            ->with('sucesso', 'Post deletado com sucesso!');
 
         } catch (\Throwable $e) {
+            DB::rollBack();
+
+            Log::error('Erro ao deletar post (admin): ' . $e->getMessage(), [
+                'user_id'   => auth()->id(),
+                'exception' => $e,
+            ]);
+
             return redirect()->route('admin.post')
-                             ->with('erro', 'Erro ao deletar post!');
+                            ->with('erro', 'Erro ao deletar post!');
         }
     }
+
     public function viewPost($id){
         try {
             $post = Post::findOrFail(decrypt($id));
