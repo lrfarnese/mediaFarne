@@ -21,7 +21,7 @@
             </div>
         </main>
         <footer class="app-footer">
-            <strong>Media Farnese</strong>
+            <strong>Media Farne</strong>
         </footer>
     </div>
 

@@ -14,14 +14,9 @@ class PerfilController extends Controller
 
     public function index($id)
     {
-        $user = User::with([
-            'posts' => function ($query) {
-                $query->latest(); 
-            },
-            'posts.images',
-            'posts.likes',
-            'posts.dislikes'
-        ])->findOrFail(decrypt($id));
+        $user = User::with(['posts' => fn($q) => $q->latest()->withCount(['likes','dislikes'])
+          ->with(['images', 'interactions' => fn($i) => $i->where('user_id', auth()->id())])])
+            ->findOrFail(decrypt($id));
 
         return view('perfil.index', compact('user'));
     }

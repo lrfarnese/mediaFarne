@@ -10,7 +10,7 @@
     'date',
     'userReaction' => null
 ])
-@vite('resources/css/app.css')
+
 <div class="card border-1 mb-4 shadow-sm mx-auto post-card" data-post-id="{{ $postId }}" style="border-radius: 8px; overflow: hidden; background-color: #fff; max-width: 550px; width: 100%;">
 
     <div class="d-flex align-items-center p-3">
@@ -59,4 +59,3 @@
         </div>
     </div>
 </div>
-@vite('resources/js/app.js')
